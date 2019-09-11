@@ -582,17 +582,28 @@ export default class Graph extends React.Component {
         };
 
         const containerProps = this._generateFocusAnimationProps();
-
-        return (
-            <div id={`${this.state.id}-${CONST.GRAPH_WRAPPER_ID}`}>
-                <svg name={`svg-container-${this.state.id}`} style={svgStyle} onClick={this.onClickGraph}>
+        if (this.state.config.excludeSvgWrapper) {
+            return (
+                <g>
                     {defs}
                     <g id={`${this.state.id}-${CONST.GRAPH_CONTAINER_ID}`} {...containerProps}>
                         {links}
                         {nodes}
                     </g>
-                </svg>
-            </div>
-        );
+                </g>
+            );
+        } else {
+            return (
+                <div id={`${this.state.id}-${CONST.GRAPH_WRAPPER_ID}`}>
+                    <svg name={`svg-container-${this.state.id}`} style={svgStyle} onClick={this.onClickGraph}>
+                        {defs}
+                        <g id={`${this.state.id}-${CONST.GRAPH_CONTAINER_ID}`} {...containerProps}>
+                            {links}
+                            {nodes}
+                        </g>
+                    </svg>
+                </div>
+            );
+        }
     }
 }
