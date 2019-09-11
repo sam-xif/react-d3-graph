@@ -226,6 +226,7 @@ export default {
     width: 800,
     offsetX: 0,
     offsetY: 0,
+    excludeSvgWrapper: false,
     d3: {
         alphaTarget: 0.05,
         gravity: -100,
